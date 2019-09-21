@@ -19,6 +19,13 @@ This module provisions a Terraform Cloud / Terraform Enterprise workspace
 | vcs\_repo | The VCS repository to configure. | map(string) | `{}` | no |
 | working\_directory | A relative path that Terraform will execute within. Defaults to the root of your repository. | string | `"null"` | no |
 
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| external\_id | The workspace's opaque external ID, which looks like `ws-<RANDOM STRING>` |
+| id | The workspace's human-readable ID, which looks like `<ORGANIZATION>/<WORKSPACE>`. |
+
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 The `variables` block is structured as follows:
