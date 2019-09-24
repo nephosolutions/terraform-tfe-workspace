@@ -30,6 +30,13 @@ variable "file_triggers_enabled" {
   default     = true
 }
 
+variable "notifications" {
+  description = "Map of `tfe_notification_configurations` to define in the workspace."
+  default = {
+  }
+  type = map(object({ configuration = map(string), triggers = list(string) }))
+}
+
 variable "queue_all_runs" {
   description = "Whether all runs should be queued. When set to false, runs triggered by a VCS change will not be queued until at least one run is manually queued."
   default     = true
@@ -52,15 +59,17 @@ variable "trigger_prefixes" {
 }
 
 variable "variables" {
-  type        = map(map(string))
-  default     = {}
   description = "Map of environment or Terraform variables to define in the workspace. To support complex values, these __MUST__ be `base64` encoded."
+  default = {
+  }
+  type = map(map(string))
 }
 
 variable "vcs_repo" {
   description = "The VCS repository to configure."
-  default     = {}
-  type        = map(string)
+  default = {
+  }
+  type = map(string)
 }
 
 variable "working_directory" {

@@ -10,6 +10,7 @@ This module provisions a Terraform Cloud / Terraform Enterprise workspace
 | auto\_apply | Whether to automatically apply changes when a Terraform plan is successful. | string | `"false"` | no |
 | file\_triggers\_enabled | Whether to filter runs based on the changed files in a VCS push. If enabled, the working directory and trigger prefixes describe a set of paths which must contain changes for a VCS push to trigger a run. If disabled, any push will trigger a run. | string | `"true"` | no |
 | name | Name of the workspace | string | n/a | yes |
+| notifications | Map of `tfe_notification_configurations` to define in the workspace. | object | `{}` | no |
 | organization | Name of the organization. | string | n/a | yes |
 | queue\_all\_runs | Whether all runs should be queued. When set to false, runs triggered by a VCS change will not be queued until at least one run is manually queued. | string | `"true"` | no |
 | ssh\_key\_id | The ID of an SSH key to assign to the workspace. | string | `"null"` | no |
@@ -28,7 +29,27 @@ This module provisions a Terraform Cloud / Terraform Enterprise workspace
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
-The `variables` block is structured as follows:
+The `notifications` object is structured as follows:
+
+```hcl
+notifications = {
+  "my-test-notification-configuration" = {
+    configuration = {
+      destination_type = "generic"
+      enabled          = true                       # Optional. Defaults to true
+      token            = "write-only secure token"  # Optional. Defaults to null
+      url              = "https://example.com"
+    }
+    triggers = [
+      "run:created",
+      "run:planning",
+      "run:errored"
+    ]
+  }
+}
+```
+
+The `variables` map is structured as follows:
 
 ```hcl
 variables = {
