@@ -14,6 +14,7 @@ This module provisions a Terraform Cloud / Terraform Enterprise workspace
 | organization | Name of the organization. | string | n/a | yes |
 | queue\_all\_runs | Whether all runs should be queued. When set to false, runs triggered by a VCS change will not be queued until at least one run is manually queued. | string | `"true"` | no |
 | ssh\_key\_id | The ID of an SSH key to assign to the workspace. | string | `"null"` | no |
+| team\_access | Associate teams to permissions on the workspace. | map(string) | `{}` | no |
 | terraform\_version | The version of Terraform to use for this workspace. | string | `"null"` | no |
 | trigger\_prefixes | List of repository-root-relative paths which describe all locations to be tracked for changes. workspace. Defaults to the latest available version. | list | `"null"` | no |
 | variables | Map of environment or Terraform variables to define in the workspace. To support complex values, these __MUST__ be `base64` encoded. | map(map(string)) | `{}` | no |
@@ -29,7 +30,9 @@ This module provisions a Terraform Cloud / Terraform Enterprise workspace
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
-The `notifications` object is structured as follows:
+## Appendix
+
+### The `notifications` object
 
 ```hcl
 notifications = {
@@ -49,7 +52,17 @@ notifications = {
 }
 ```
 
-The `variables` map is structured as follows:
+### The `team_access` map
+
+```hcl
+team_access = {
+  "my-tfe-team" = "<permission>"
+}
+```
+
+Valid values for the _permissions_ are `admin`, `read`, `plan`, or `write`.
+
+### The `variables` map
 
 ```hcl
 variables = {
@@ -75,7 +88,7 @@ variables = {
 }
 ```
 
-The `vcs_repo` block supports:
+### The `vcs_repo` block
 
 * `identifier` - (Required) A reference to your VCS repository in the format `:org/:repo` where `:org` and `:repo` refer to the organization and repository in your VCS provider.
 * `branch` - (Optional) The repository branch that Terraform will execute from. Default to `master`.

@@ -36,6 +36,13 @@ resource "tfe_workspace" "managed" {
   working_directory = var.working_directory
 }
 
+resource "tfe_team_access" "managed" {
+  for_each     = var.team_access
+  access       = each.value
+  team_id      = each.key
+  workspace_id = tfe_workspace.managed.id
+}
+
 resource "tfe_notification_configuration" "managed" {
   for_each              = var.notifications
   name                  = each.key

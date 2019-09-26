@@ -47,6 +47,13 @@ variable "ssh_key_id" {
   default     = null
 }
 
+variable "team_access" {
+  description = "Associate teams to permissions on the workspace."
+  default = {
+  }
+  type = map(string)
+}
+
 variable "terraform_version" {
   description = "The version of Terraform to use for this workspace."
   default     = null
