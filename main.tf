@@ -92,7 +92,7 @@ resource "tfe_variable" "terraform_hcl" {
 
   category  = "terraform"
   key       = each.key
-  value     = base64decode(each.value)
+  value     = jsondecode(each.value)
   hcl       = true
   sensitive = false
 
@@ -115,7 +115,7 @@ resource "tfe_variable" "terraform_hcl_sensitive" {
 
   category  = "terraform"
   key       = each.key
-  value     = base64decode(each.value)
+  value     = jsondecode(each.value)
   hcl       = true
   sensitive = true
 

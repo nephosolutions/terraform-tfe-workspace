@@ -17,7 +17,7 @@ This module provisions a Terraform Cloud / Terraform Enterprise workspace
 | team\_access | Associate teams to permissions on the workspace. | map(string) | `{}` | no |
 | terraform\_version | The version of Terraform to use for this workspace. | string | `"null"` | no |
 | trigger\_prefixes | List of repository-root-relative paths which describe all locations to be tracked for changes. workspace. Defaults to the latest available version. | list | `"null"` | no |
-| variables | Map of environment or Terraform variables to define in the workspace. To support complex values, these __MUST__ be `base64` encoded. | map(map(string)) | `{}` | no |
+| variables | Map of environment or Terraform variables to define in the workspace. To support complex values, these __MUST__ be `base64` or `json` encoded. | map(map(string)) | `{}` | no |
 | vcs\_repo | The VCS repository to configure. | map(string) | `{}` | no |
 | working\_directory | A relative path that Terraform will execute within. Defaults to the root of your repository. | string | `"null"` | no |
 
@@ -64,6 +64,9 @@ Valid values for the _permissions_ are `admin`, `read`, `plan`, or `write`.
 
 ### The `variables` map
 
+To support complex values of environment and Terraform variables, these __MUST__ be `base64` encoded.
+The values of Terraform HCL variables __MUST__ be `json` encoded.
+
 ```hcl
 variables = {
   environment = {
@@ -80,7 +83,8 @@ variables = {
     ...
   }
   terraform_hcl = {
-    ...
+    key1 = jsonencode(var.value)
+    key2 = jsonencode("value2")
   }
   terraform_hcl_sensitive = {
     ...
