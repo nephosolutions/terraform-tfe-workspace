@@ -59,7 +59,7 @@ resource "tfe_variable" "environment" {
 
   category  = "env"
   key       = each.key
-  value     = base64decode(each.value)
+  value     = each.value
   sensitive = false
 
   workspace_id = tfe_workspace.managed.id
@@ -70,7 +70,7 @@ resource "tfe_variable" "environment_sensitive" {
 
   category  = "env"
   key       = each.key
-  value     = base64decode(each.value)
+  value     = each.value
   sensitive = true
 
   workspace_id = tfe_workspace.managed.id
@@ -81,19 +81,7 @@ resource "tfe_variable" "terraform" {
 
   category  = "terraform"
   key       = each.key
-  value     = base64decode(each.value)
-  sensitive = false
-
-  workspace_id = tfe_workspace.managed.id
-}
-
-resource "tfe_variable" "terraform_hcl" {
-  for_each = lookup(var.variables, "terraform_hcl", {})
-
-  category  = "terraform"
-  key       = each.key
-  value     = jsondecode(each.value)
-  hcl       = true
+  value     = each.value
   sensitive = false
 
   workspace_id = tfe_workspace.managed.id
@@ -104,19 +92,7 @@ resource "tfe_variable" "terraform_sensitive" {
 
   category  = "terraform"
   key       = each.key
-  value     = base64decode(each.value)
-  sensitive = true
-
-  workspace_id = tfe_workspace.managed.id
-}
-
-resource "tfe_variable" "terraform_hcl_sensitive" {
-  for_each = lookup(var.variables, "terraform_hcl_sensitive", {})
-
-  category  = "terraform"
-  key       = each.key
-  value     = jsondecode(each.value)
-  hcl       = true
+  value     = each.value
   sensitive = true
 
   workspace_id = tfe_workspace.managed.id

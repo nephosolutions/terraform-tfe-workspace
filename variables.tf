@@ -66,7 +66,7 @@ variable "trigger_prefixes" {
 }
 
 variable "variables" {
-  description = "Map of environment or Terraform variables to define in the workspace. To support complex values, these __MUST__ be `base64` or `json` encoded."
+  description = "Map of environment or Terraform variables to define in the workspace."
   default = {
   }
   type = map(map(string))
