@@ -44,14 +44,14 @@ resource "tfe_team_access" "managed" {
 }
 
 resource "tfe_notification_configuration" "managed" {
-  for_each              = var.notifications
-  name                  = each.key
-  destination_type      = each.value.configuration["destination_type"]
-  enabled               = lookup(each.value.configuration, "enabled", true)
-  token                 = lookup(each.value.configuration, "token", null)
-  triggers              = each.value.triggers
-  url                   = each.value.configuration["url"]
-  workspace_external_id = tfe_workspace.managed.external_id
+  for_each         = var.notifications
+  name             = each.key
+  destination_type = each.value.configuration["destination_type"]
+  enabled          = lookup(each.value.configuration, "enabled", true)
+  token            = lookup(each.value.configuration, "token", null)
+  triggers         = each.value.triggers
+  url              = each.value.configuration["url"]
+  workspace_id     = tfe_workspace.managed.external_id
 }
 
 resource "tfe_variable" "environment" {
