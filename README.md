@@ -1,3 +1,7 @@
+# Deprecation Notice
+
+This Terraform module is no longer suported. Please use the resources from the [Terraform Enterprise Provider](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs).
+
 # Terraform Cloud Workspace
 
 This module provisions a Terraform Cloud / Terraform Enterprise workspace
