@@ -1,4 +1,4 @@
-# Copyright 2019 NephoSolutions SPRL, Sebastian Trebitz
+# Copyright 2019-2022 NephoSolutions srl, Sebastian Trebitz
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,11 +13,6 @@
 # limitations under the License.
 
 output "id" {
-  description = "The workspace's human-readable ID, which looks like `<ORGANIZATION>/<WORKSPACE>`."
-  value       = tfe_workspace.managed.id
-}
-
-output "external_id" {
-  description = "The workspace's opaque external ID, which looks like `ws-<RANDOM STRING>`"
-  value       = tfe_workspace.managed.external_id
+  description = "The workspace ID."
+  value       = tfe_workspace.workspace.id
 }

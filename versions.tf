@@ -1,4 +1,4 @@
-# Copyright 2019 NephoSolutions SPRL, Sebastian Trebitz
+# Copyright 2019-2022 NephoSolutions srl, Sebastian Trebitz
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,5 +13,12 @@
 # limitations under the License.
 
 terraform {
-  required_version = ">= 0.12.6"
+  required_providers {
+    tfe = {
+      source  = "hashicorp/tfe"
+      version = ">= 0.36"
+    }
+  }
+
+  required_version = ">= 0.12.26"
 }

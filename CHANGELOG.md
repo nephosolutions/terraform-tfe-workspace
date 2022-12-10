@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [3.0.0] - 2022-12-10
+
+Refactor module structure.
+
 ## [2.0.0] - 2019-10-17
 
 - do not decode workspace variable values - expect strings
@@ -26,9 +30,10 @@ All notable changes to this project will be documented in this file.
 
 - Initial release
 
-[Unreleased]: https://github.com/nephosolutions/terraform-google-gcp-project/compare/v2.0.0...HEAD
-[2.0.0]: https://github.com/nephosolutions/terraform-google-gcp-project/compare/v1.2.1...v2.0.0
-[1.2.1]: https://github.com/nephosolutions/terraform-google-gcp-project/compare/v1.2.0...v1.2.1
-[1.2.0]: https://github.com/nephosolutions/terraform-google-gcp-project/compare/v1.1.0...v1.2.0
-[1.1.0]: https://github.com/nephosolutions/terraform-google-gcp-project/compare/v1.0.0...v1.1.0
+[Unreleased]: https://github.com/nephosolutions/terraform-google-gcp-project/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v3.0.0
+[2.0.0]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v2.0.0
+[1.2.1]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v1.2.1
+[1.2.0]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v1.2.0
+[1.1.0]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v1.1.0
 [1.0.0]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v1.0.0

@@ -1,4 +1,4 @@
-# Copyright 2019 NephoSolutions SPRL, Sebastian Trebitz
+# Copyright 2019-2022 NephoSolutions srl, Sebastian Trebitz
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,74 +12,128 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-variable "name" {
-  description = "Name of the workspace"
+variable "agent_pool_id" {
+  description = "The ID of an agent pool to assign to the workspace."
+  type        = string
+  default     = null
 }
 
-variable "organization" {
-  description = "Name of the organization."
+variable "allow_destroy_plan" {
+  description = "Whether destroy plans can be queued on the workspace."
+  type        = bool
+  default     = false
 }
 
 variable "auto_apply" {
   description = "Whether to automatically apply changes when a Terraform plan is successful."
+  type        = bool
   default     = false
+}
+
+variable "description" {
+  description = "A description for the workspace."
+  type        = string
+}
+
+variable "execution_mode" {
+  description = "Which execution mode to use. When set to `local`, the workspace will be used for state storage only."
+  type        = string
+  default     = "remote"
+
+  validation {
+    condition     = contains(["agent", "local", "remote"], var.execution_mode)
+    error_message = "Using Terraform Cloud, valid values are `remote`, `local` or `agent`. Using Terraform Enterprise, only `remote` and `local` execution modes are valid."
+  }
 }
 
 variable "file_triggers_enabled" {
   description = "Whether to filter runs based on the changed files in a VCS push. If enabled, the working directory and trigger prefixes describe a set of paths which must contain changes for a VCS push to trigger a run. If disabled, any push will trigger a run."
-  default     = true
+  type        = bool
+  default     = false
 }
 
-variable "notifications" {
-  description = "Map of `tfe_notification_configurations` to define in the workspace."
-  default = {
-  }
-  type = map(object({ configuration = map(string), triggers = list(string) }))
+variable "global_remote_state" {
+  description = "Whether the workspace allows all workspaces in the organization to access its state data during runs. If false, then only specifically approved workspaces can access its state (`remote_state_consumer_ids`)."
+  type        = bool
+  default     = false
+}
+
+variable "name" {
+  description = "Name of the workspace."
+  type        = string
+}
+
+variable "organization" {
+  description = "Name of the Terraform Cloud organization."
+  type        = string
 }
 
 variable "queue_all_runs" {
-  description = "Whether all runs should be queued. When set to false, runs triggered by a VCS change will not be queued until at least one run is manually queued."
+  description = "Whether the workspace should start automatically performing runs immediately after its creation."
+  type        = bool
+  default     = true
+}
+
+variable "remote_state_consumer_ids" {
+  description = "The set of workspace IDs set as explicit remote state consumers for the given workspace."
+  type        = list(string)
+  default     = []
+}
+
+variable "speculative_enabled" {
+  description = "Whether this workspace allows speculative plans.  Setting this to `false` prevents Terraform Cloud or the Terraform Enterprise instance from running plans on pull requests, which can improve security if the VCS repository is public or includes untrusted contributors."
+  type        = bool
   default     = true
 }
 
 variable "ssh_key_id" {
   description = "The ID of an SSH key to assign to the workspace."
+  type        = string
   default     = null
 }
 
-variable "team_access" {
-  description = "Associate teams to permissions on the workspace."
-  default = {
-  }
-  type = map(string)
+variable "structured_run_output_enabled" {
+  description = "Whether this workspace should show output from Terraform runs using the enhanced UI when available. Setting this to `false` ensures that all runs in this workspace will display their output as text logs."
+  type        = bool
+  default     = true
+}
+
+variable "tag_names" {
+  description = "A list of tag names for this workspace. Note that tags must only contain lowercase letters, numbers, colons, or hyphens."
+  type        = list(string)
+  default     = []
 }
 
 variable "terraform_version" {
-  description = "The version of Terraform to use for this workspace."
+  description = "The version of Terraform to use for this workspace. This can be either an exact version or a version constraint (like `~> 1.0.0`); if you specify a constraint, the workspace will always use the newest release that meets that constraint."
+  type        = string
+}
+
+variable "trigger_patterns" {
+  description = "List of glob patterns that describe the files Terraform Cloud monitors for changes. Trigger patterns are always appended to the root directory of the repository."
+  type        = list(string)
   default     = null
 }
 
 variable "trigger_prefixes" {
-  description = "List of repository-root-relative paths which describe all locations to be tracked for changes. workspace. Defaults to the latest available version."
+  description = "List of repository-root-relative paths which describe all locations to be tracked for changes."
+  type        = list(string)
   default     = null
-  type        = list
-}
-
-variable "variables" {
-  description = "Map of environment or Terraform variables to define in the workspace."
-  default = {
-  }
-  type = map(map(string))
 }
 
 variable "vcs_repo" {
-  description = "The VCS repository to configure."
-  default = {
-  }
-  type = map(string)
+  description = "Settings for the workspace's VCS repository, enabling the UI/VCS-driven run workflow. Omit this argument to utilize the CLI-driven and API-driven workflows, where runs are not driven by webhooks on your VCS provider."
+
+  type = object({
+    identifier     = string
+    oauth_token_id = string
+  })
+
+  default = null
 }
 
 variable "working_directory" {
   description = "A relative path that Terraform will execute within. Defaults to the root of your repository."
+  type        = string
   default     = null
 }
