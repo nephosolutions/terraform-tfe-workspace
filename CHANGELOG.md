@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [3.0.1] - 2022-12-10
+
+Only trigger runs when files in specified paths change.
+
 ## [3.0.0] - 2022-12-10
 
 Refactor module structure.
@@ -30,7 +34,8 @@ Refactor module structure.
 
 - Initial release
 
-[Unreleased]: https://github.com/nephosolutions/terraform-google-gcp-project/compare/v3.0.0...HEAD
+[Unreleased]: https://github.com/nephosolutions/terraform-google-gcp-project/compare/v3.0.1...HEAD
+[3.0.1]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v3.0.1
 [3.0.0]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v3.0.0
 [2.0.0]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v2.0.0
 [1.2.1]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v1.2.1

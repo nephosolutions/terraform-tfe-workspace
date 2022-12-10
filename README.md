@@ -36,7 +36,7 @@ No modules.
 | <a name="input_auto_apply"></a> [auto\_apply](#input\_auto\_apply) | Whether to automatically apply changes when a Terraform plan is successful. | `bool` | `false` | no |
 | <a name="input_description"></a> [description](#input\_description) | A description for the workspace. | `string` | n/a | yes |
 | <a name="input_execution_mode"></a> [execution\_mode](#input\_execution\_mode) | Which execution mode to use. When set to `local`, the workspace will be used for state storage only. | `string` | `"remote"` | no |
-| <a name="input_file_triggers_enabled"></a> [file\_triggers\_enabled](#input\_file\_triggers\_enabled) | Whether to filter runs based on the changed files in a VCS push. If enabled, the working directory and trigger prefixes describe a set of paths which must contain changes for a VCS push to trigger a run. If disabled, any push will trigger a run. | `bool` | `false` | no |
+| <a name="input_file_triggers_enabled"></a> [file\_triggers\_enabled](#input\_file\_triggers\_enabled) | Whether to filter runs based on the changed files in a VCS push. If enabled, the working directory and trigger prefixes describe a set of paths which must contain changes for a VCS push to trigger a run. If disabled, any push will trigger a run. Workspaces with no Terraform working directory will always trigger runs. | `bool` | `true` | no |
 | <a name="input_global_remote_state"></a> [global\_remote\_state](#input\_global\_remote\_state) | Whether the workspace allows all workspaces in the organization to access its state data during runs. If false, then only specifically approved workspaces can access its state (`remote_state_consumer_ids`). | `bool` | `false` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of the workspace. | `string` | n/a | yes |
 | <a name="input_organization"></a> [organization](#input\_organization) | Name of the Terraform Cloud organization. | `string` | n/a | yes |
@@ -58,62 +58,3 @@ No modules.
 |------|-------------|
 | <a name="output_id"></a> [id](#output\_id) | The workspace ID. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
-## Appendix
-
-### The `notifications` object
-
-```hcl
-notifications = {
-  "my-test-notification-configuration" = {
-    configuration = {
-      destination_type = "generic"
-      enabled          = true                       # Optional. Defaults to true
-      token            = "write-only secure token"  # Optional. Defaults to null
-      url              = "https://example.com"
-    }
-    triggers = [
-      "run:created",
-      "run:planning",
-      "run:errored"
-    ]
-  }
-}
-```
-
-### The `team_access` map
-
-```hcl
-team_access = {
-  "my-tfe-team" = "<permission>"
-}
-```
-
-Valid values for the _permissions_ are `admin`, `read`, `plan`, or `write`.
-
-### The `variables` map
-
-```hcl
-variables = {
-  environment = {
-    key1 = var.value
-    key2 = "value2"
-  }
-  environment_sensitive = {
-    ...
-  }
-  terraform = {
-    ...
-  }
-  terraform_sensitive = {
-    ...
-  }
-}
-```
-
-### The `vcs_repo` block
-
-* `identifier` - (Required) A reference to your VCS repository in the format `:org/:repo` where `:org` and `:repo` refer to the organization and repository in your VCS provider.
-* `branch` - (Optional) The repository branch that Terraform will execute from. Default to `master`.
-* `ingress_submodules` - (Optional) Whether submodules should be fetched when cloning the VCS repository. Defaults to `false`.
-* `oauth_token_id` - (Required) Token ID of the VCS Connection (OAuth Conection Token) to use.
