@@ -12,12 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-output "id" {
-  description = "The workspace ID."
-  value       = tfe_workspace.workspace.id
-}
+module "workspace" {
+  source = "../../../"
 
-output "name" {
-  description = "The workspace name."
-  value       = tfe_workspace.workspace.name
+
+  description       = "Test workspace"
+  name              = "test-workspace"
+  organization      = "my-organization"
+  terraform_version = "1.3.5"
 }

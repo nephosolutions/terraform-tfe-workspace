@@ -12,12 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-output "id" {
-  description = "The workspace ID."
-  value       = tfe_workspace.workspace.id
-}
-
-output "name" {
-  description = "The workspace name."
-  value       = tfe_workspace.workspace.name
+terraform {
+  required_version = ">= 0.12.26"
 }

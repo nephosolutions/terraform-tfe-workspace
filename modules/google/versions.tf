@@ -12,12 +12,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-output "id" {
-  description = "The workspace ID."
-  value       = tfe_workspace.workspace.id
-}
-
-output "name" {
-  description = "The workspace name."
-  value       = tfe_workspace.workspace.name
+terraform {
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = ">= 3.52"
+    }
+    tfe = {
+      source  = "hashicorp/tfe"
+      version = ">= 0.36"
+    }
+    time = {
+      source  = "hashicorp/time"
+      version = ">= 0"
+    }
+  }
+  required_version = ">= 0.13"
 }

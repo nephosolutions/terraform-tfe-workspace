@@ -14,10 +14,15 @@
 
 output "id" {
   description = "The workspace ID."
-  value       = tfe_workspace.workspace.id
+  value       = module.workspace.id
 }
 
 output "name" {
   description = "The workspace name."
-  value       = tfe_workspace.workspace.name
+  value       = module.workspace.name
+}
+
+output "tfe_workspace_sa" {
+  description = "The Google Cloud service account for the TFE workspace."
+  value       = google_service_account.workspace.email
 }

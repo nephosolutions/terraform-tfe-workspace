@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [3.1.0] - 2022-12-10
+
+Add submodule which provisions a workspace tailored for the Google Cloud.
+
 ## [3.0.1] - 2022-12-10
 
 Only trigger runs when files in specified paths change.
@@ -34,7 +38,8 @@ Refactor module structure.
 
 - Initial release
 
-[Unreleased]: https://github.com/nephosolutions/terraform-google-gcp-project/compare/v3.0.1...HEAD
+[Unreleased]: https://github.com/nephosolutions/terraform-google-gcp-project/compare/v3.1.0...HEAD
+[3.1.0]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v3.1.0
 [3.0.1]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v3.0.1
 [3.0.0]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v3.0.0
 [2.0.0]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v2.0.0
