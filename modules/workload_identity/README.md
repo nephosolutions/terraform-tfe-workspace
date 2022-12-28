@@ -10,11 +10,10 @@ module "metadata" {
   version = "~> 4.0.0"
 
   description       = "Test workspace"
-  google_project_id = local.google_project_id
-  impersonate_sa    = "projects/{{project}}/serviceAccounts/{{email}}"
   name              = "test-workspace"
   organization      = "my-organization"
   terraform_version = "1.3.6"
+  workload_identity_audience = "test-audience"
 }
 ```
 

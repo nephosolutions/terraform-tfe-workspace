@@ -5,7 +5,7 @@ This is a helper module to prepare GCP Credentials from Terraform Cloud/Enterpri
 ## Usage
 ```hcl
 module "tfe_oidc" {
-  source  = "nephosolutions/workspace/tfe//modules/workload_identity"
+  source  = "nephosolutions/workspace/tfe//modules/oidc_token"
   version = "~> 4.0.0"
 
   impersonate_service_account = "tfe-test@tfe-test-wif.iam.gserviceaccount.com"
