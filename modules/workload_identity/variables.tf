@@ -58,22 +58,6 @@ variable "global_remote_state" {
   default     = false
 }
 
-variable "google_project_id" {
-  description = "The Google Cloud Platform project ID"
-  type        = string
-}
-
-variable "impersonate_sa" {
-  description = "The service accounts which the Terraform workspace SA can impersonate."
-  type        = string
-}
-
-variable "key_rotation_days" {
-  description = "Interval in days to rotate the workspace service account key."
-  type        = number
-  default     = 30
-}
-
 variable "name" {
   description = "Name of the workspace."
   type        = string
@@ -152,4 +136,9 @@ variable "working_directory" {
   description = "A relative path that Terraform will execute within. Defaults to the root of your repository."
   type        = string
   default     = null
+}
+
+variable "workload_identity_audience" {
+  description = "Terraform Cloud workload identity audience."
+  type        = string
 }

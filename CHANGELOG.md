@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [4.0.0] - 2022-12-27
+
+- Add support for Workload Identity Federation to integrate Terraform Cloud/Enterprise workspaces with GCP
+- Drop support for GCP integration using service accounts keys
+
 ## [3.1.0] - 2022-12-10
 
 Add submodule which provisions a workspace tailored for the Google Cloud.
@@ -38,7 +43,8 @@ Refactor module structure.
 
 - Initial release
 
-[Unreleased]: https://github.com/nephosolutions/terraform-google-gcp-project/compare/v3.1.0...HEAD
+[Unreleased]: https://github.com/nephosolutions/terraform-google-gcp-project/compare/v4.0.0...HEAD
+[4.0.0]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v4.0.0
 [3.1.0]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v3.1.0
 [3.0.1]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v3.0.1
 [3.0.0]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v3.0.0

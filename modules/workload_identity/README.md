@@ -6,15 +6,15 @@ This module provisions a Terraform Cloud / Terraform Enterprise workspace tailor
 
 ```hcl
 module "metadata" {
-  source  = "nephosolutions/workspace/tfe//modules/google"
-  version = "~> 3.1.0"
+  source  = "nephosolutions/workspace/tfe//modules/workload_identity"
+  version = "~> 4.0.0"
 
   description       = "Test workspace"
   google_project_id = local.google_project_id
   impersonate_sa    = "projects/{{project}}/serviceAccounts/{{email}}"
   name              = "test-workspace"
   organization      = "my-organization"
-  terraform_version = "1.3.5"
+  terraform_version = "1.3.6"
 }
 ```
 
@@ -24,17 +24,13 @@ module "metadata" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
-| <a name="requirement_google"></a> [google](#requirement\_google) | >= 3.52 |
 | <a name="requirement_tfe"></a> [tfe](#requirement\_tfe) | >= 0.36 |
-| <a name="requirement_time"></a> [time](#requirement\_time) | >= 0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 4.45.0 |
 | <a name="provider_tfe"></a> [tfe](#provider\_tfe) | 0.40.0 |
-| <a name="provider_time"></a> [time](#provider\_time) | 0.9.1 |
 
 ## Modules
 
@@ -46,12 +42,7 @@ module "metadata" {
 
 | Name | Type |
 |------|------|
-| [google_service_account.workspace](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account) | resource |
-| [google_service_account_iam_member.serviceAccountTokenCreator](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account_iam_member) | resource |
-| [google_service_account_iam_member.serviceAccountUser](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account_iam_member) | resource |
-| [google_service_account_key.workspace_sa](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account_key) | resource |
-| [tfe_variable.google_credentials](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable) | resource |
-| [time_rotating.workspace_sa_key](https://registry.terraform.io/providers/hashicorp/time/latest/docs/resources/rotating) | resource |
+| [tfe_variable.tfc_workload_identity_audience](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable) | resource |
 
 ## Inputs
 
@@ -64,9 +55,6 @@ module "metadata" {
 | <a name="input_execution_mode"></a> [execution\_mode](#input\_execution\_mode) | Which execution mode to use. When set to `local`, the workspace will be used for state storage only. | `string` | `"remote"` | no |
 | <a name="input_file_triggers_enabled"></a> [file\_triggers\_enabled](#input\_file\_triggers\_enabled) | Whether to filter runs based on the changed files in a VCS push. If enabled, the working directory and trigger prefixes describe a set of paths which must contain changes for a VCS push to trigger a run. If disabled, any push will trigger a run. | `bool` | `false` | no |
 | <a name="input_global_remote_state"></a> [global\_remote\_state](#input\_global\_remote\_state) | Whether the workspace allows all workspaces in the organization to access its state data during runs. If false, then only specifically approved workspaces can access its state (`remote_state_consumer_ids`). | `bool` | `false` | no |
-| <a name="input_google_project_id"></a> [google\_project\_id](#input\_google\_project\_id) | The Google Cloud Platform project ID | `string` | n/a | yes |
-| <a name="input_impersonate_sa"></a> [impersonate\_sa](#input\_impersonate\_sa) | The service accounts which the Terraform workspace SA can impersonate. | `string` | n/a | yes |
-| <a name="input_key_rotation_days"></a> [key\_rotation\_days](#input\_key\_rotation\_days) | Interval in days to rotate the workspace service account key. | `number` | `30` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of the workspace. | `string` | n/a | yes |
 | <a name="input_organization"></a> [organization](#input\_organization) | Name of the Terraform Cloud organization. | `string` | n/a | yes |
 | <a name="input_queue_all_runs"></a> [queue\_all\_runs](#input\_queue\_all\_runs) | Whether the workspace should start automatically performing runs immediately after its creation. | `bool` | `true` | no |
@@ -80,6 +68,7 @@ module "metadata" {
 | <a name="input_trigger_prefixes"></a> [trigger\_prefixes](#input\_trigger\_prefixes) | List of repository-root-relative paths which describe all locations to be tracked for changes. | `list(string)` | `null` | no |
 | <a name="input_vcs_repo"></a> [vcs\_repo](#input\_vcs\_repo) | Settings for the workspace's VCS repository, enabling the UI/VCS-driven run workflow. Omit this argument to utilize the CLI-driven and API-driven workflows, where runs are not driven by webhooks on your VCS provider. | <pre>object({<br>    identifier     = string<br>    oauth_token_id = string<br>  })</pre> | `null` | no |
 | <a name="input_working_directory"></a> [working\_directory](#input\_working\_directory) | A relative path that Terraform will execute within. Defaults to the root of your repository. | `string` | `null` | no |
+| <a name="input_workload_identity_audience"></a> [workload\_identity\_audience](#input\_workload\_identity\_audience) | Terraform Cloud workload identity audience. | `string` | n/a | yes |
 
 ## Outputs
 
@@ -87,5 +76,4 @@ module "metadata" {
 |------|-------------|
 | <a name="output_id"></a> [id](#output\_id) | The workspace ID. |
 | <a name="output_name"></a> [name](#output\_name) | The workspace name. |
-| <a name="output_tfe_workspace_sa"></a> [tfe\_workspace\_sa](#output\_tfe\_workspace\_sa) | The Google Cloud service account for the TFE workspace. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

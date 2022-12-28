@@ -1,10 +1,11 @@
-# Copyright 2019-2022 NephoSolutions srl, Sebastian Trebitz
+#!/bin/bash
+# Copyright 2022 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-2.0
+#     https://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -12,17 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-output "id" {
-  description = "The workspace ID."
-  value       = module.workspace.id
-}
+# Exit if any of the intermediate steps fail
+set -e
 
-output "name" {
-  description = "The workspace name."
-  value       = module.workspace.name
-}
+FILENAME=$@
 
-output "tfe_workspace_sa" {
-  description = "The Google Cloud service account for the TFE workspace."
-  value       = google_service_account.workspace.email
-}
+echo $TFC_WORKLOAD_IDENTITY_TOKEN > $FILENAME
+
+echo -n "{\"file\":\"${FILENAME}\"}"

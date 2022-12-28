@@ -12,17 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-locals {
-  google_project_id = "my-gcp-project"
+output "id" {
+  description = "The workspace ID."
+  value       = module.workspace.id
 }
 
-module "workspace" {
-  source = "../../../modules/google"
-
-  description       = "Test workspace"
-  google_project_id = local.google_project_id
-  impersonate_sa    = "projects/${local.google_project_id}/serviceAccounts/my-service-account@${local.google_project_id}.iam.gserviceaccount.com"
-  name              = "test-workspace"
-  organization      = "my-organization"
-  terraform_version = "1.3.5"
+output "name" {
+  description = "The workspace name."
+  value       = module.workspace.name
 }

@@ -37,11 +37,10 @@ module "workspace" {
   working_directory             = var.working_directory
 }
 
-resource "tfe_variable" "google_credentials" {
-  category     = "terraform"
-  description  = "The Google Cloud credentials for the TFE workspace service account in JSON format."
-  key          = "google_credentials"
-  sensitive    = true
-  value        = base64decode(google_service_account_key.workspace_sa.private_key)
+resource "tfe_variable" "tfc_workload_identity_audience" {
+  category     = "env"
+  description  = "Terraform Cloud workload identity audience."
+  key          = "TFC_WORKLOAD_IDENTITY_AUDIENCE"
+  value        = var.workload_identity_audience
   workspace_id = module.workspace.id
 }
