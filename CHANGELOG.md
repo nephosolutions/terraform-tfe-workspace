@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [4.1.0] - 2023-01-12
+
+Add support for optional VCS configuration attributes `branch`, `ingress_submodules` and `tags_regex`.
+Terraform `>= 1.3` is required.
+
 ## [4.0.0] - 2022-12-27
 
 - Add support for Workload Identity Federation to integrate Terraform Cloud/Enterprise workspaces with GCP
@@ -43,7 +48,8 @@ Refactor module structure.
 
 - Initial release
 
-[Unreleased]: https://github.com/nephosolutions/terraform-google-gcp-project/compare/v4.0.0...HEAD
+[Unreleased]: https://github.com/nephosolutions/terraform-google-gcp-project/compare/v4.1.0...HEAD
+[4.1.0]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v4.1.0
 [4.0.0]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v4.0.0
 [3.1.0]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v3.1.0
 [3.0.1]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v3.0.1

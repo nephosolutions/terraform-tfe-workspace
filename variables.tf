@@ -125,8 +125,11 @@ variable "vcs_repo" {
   description = "Settings for the workspace's VCS repository, enabling the UI/VCS-driven run workflow. Omit this argument to utilize the CLI-driven and API-driven workflows, where runs are not driven by webhooks on your VCS provider."
 
   type = object({
-    identifier     = string
-    oauth_token_id = string
+    branch             = optional(string)
+    identifier         = string
+    ingress_submodules = optional(bool)
+    oauth_token_id     = string
+    tags_regex         = optional(string)
   })
 
   default = null

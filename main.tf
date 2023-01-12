@@ -36,8 +36,11 @@ resource "tfe_workspace" "workspace" {
     for_each = var.vcs_repo == null ? [] : [1]
 
     content {
-      identifier     = var.vcs_repo.identifier
-      oauth_token_id = var.vcs_repo.oauth_token_id
+      branch             = var.vcs_repo.branch
+      identifier         = var.vcs_repo.identifier
+      ingress_submodules = var.vcs_repo.ingress_submodules
+      oauth_token_id     = var.vcs_repo.oauth_token_id
+      tags_regex         = var.vcs_repo.tags_regex
     }
   }
 

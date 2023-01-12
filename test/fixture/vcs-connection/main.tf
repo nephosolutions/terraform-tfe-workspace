@@ -12,13 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-terraform {
-  required_providers {
-    tfe = {
-      source  = "hashicorp/tfe"
-      version = ">= 0.36"
-    }
-  }
+module "workspace" {
+  source = "../../../"
 
-  required_version = ">= 1.3"
+
+  description       = "Test workspace"
+  name              = "test-workspace"
+  organization      = "my-organization"
+  terraform_version = "1.3.5"
+
+  vcs_repo = {
+    branch         = "test"
+    identifier     = "nephosolutions/terraform-tfe-workspace"
+    oauth_token_id = "foobar"
+  }
 }
