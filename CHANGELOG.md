@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [4.2.0] - 2023-01-27
+
+Add support for Terraform Cloud Projects to organize workspaces at scale.
+
 ## [4.1.0] - 2023-01-12
 
 Add support for optional VCS configuration attributes `branch`, `ingress_submodules` and `tags_regex`.
@@ -48,7 +52,8 @@ Refactor module structure.
 
 - Initial release
 
-[Unreleased]: https://github.com/nephosolutions/terraform-google-gcp-project/compare/v4.1.0...HEAD
+[Unreleased]: https://github.com/nephosolutions/terraform-google-gcp-project/compare/v4.2.0...HEAD
+[4.2.0]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v4.2.0
 [4.1.0]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v4.1.0
 [4.0.0]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v4.0.0
 [3.1.0]: https://github.com/nephosolutions/terraform-google-gcp-project/releases/tag/v3.1.0

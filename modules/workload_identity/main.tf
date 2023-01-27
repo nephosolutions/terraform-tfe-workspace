@@ -24,6 +24,7 @@ module "workspace" {
   global_remote_state           = var.global_remote_state
   name                          = var.name
   organization                  = var.organization
+  project_id                    = var.project_id
   queue_all_runs                = var.queue_all_runs
   remote_state_consumer_ids     = var.remote_state_consumer_ids
   speculative_enabled           = var.speculative_enabled

@@ -38,6 +38,7 @@ variable "description" {
 variable "execution_mode" {
   description = "Which execution mode to use. When set to `local`, the workspace will be used for state storage only."
   type        = string
+  nullable    = false
   default     = "remote"
 
   validation {
@@ -66,6 +67,12 @@ variable "name" {
 variable "organization" {
   description = "Name of the Terraform Cloud organization."
   type        = string
+}
+
+variable "project_id" {
+  description = "ID of the project where the workspace should be created."
+  type        = string
+  default     = null
 }
 
 variable "queue_all_runs" {
@@ -107,6 +114,7 @@ variable "tag_names" {
 variable "terraform_version" {
   description = "The version of Terraform to use for this workspace. This can be either an exact version or a version constraint (like `~> 1.0.0`); if you specify a constraint, the workspace will always use the newest release that meets that constraint."
   type        = string
+  nullable    = false
 }
 
 variable "trigger_patterns" {
@@ -144,4 +152,5 @@ variable "working_directory" {
 variable "workload_identity_audience" {
   description = "Terraform Cloud workload identity audience."
   type        = string
+  nullable    = false
 }
