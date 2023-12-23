@@ -18,10 +18,9 @@ module "workspace" {
 
   description       = "Test workspace"
   name              = "test-workspace"
-  organization      = "my-organization"
   terraform_version = "1.3.5"
 
-  vcs_repo = {
+  vcs_repository = {
     branch         = "test"
     identifier     = "nephosolutions/terraform-tfe-workspace"
     oauth_token_id = "foobar"

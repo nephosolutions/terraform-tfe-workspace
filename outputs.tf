@@ -13,7 +13,7 @@
 # limitations under the License.
 
 output "id" {
-  description = "The workspace ID."
+  description = "The workspace identifier."
   value       = tfe_workspace.workspace.id
 }
 

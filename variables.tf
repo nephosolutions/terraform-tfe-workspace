@@ -38,11 +38,10 @@ variable "description" {
 variable "execution_mode" {
   description = "Which execution mode to use. When set to `local`, the workspace will be used for state storage only."
   type        = string
-  nullable    = false
-  default     = "remote"
+  default     = null
 
   validation {
-    condition     = contains(["agent", "local", "remote"], var.execution_mode)
+    condition     = var.execution_mode == null ? true : contains(["agent", "local", "remote"], var.execution_mode)
     error_message = "Using Terraform Cloud, valid values are `remote`, `local` or `agent`. Using Terraform Enterprise, only `remote` and `local` execution modes are valid."
   }
 }
@@ -62,11 +61,13 @@ variable "global_remote_state" {
 variable "name" {
   description = "Name of the workspace."
   type        = string
+  nullable    = false
 }
 
 variable "organization" {
   description = "Name of the Terraform Cloud organization."
   type        = string
+  default     = null
 }
 
 variable "project_id" {
@@ -84,6 +85,7 @@ variable "queue_all_runs" {
 variable "remote_state_consumer_ids" {
   description = "The set of workspace IDs set as explicit remote state consumers for the given workspace."
   type        = list(string)
+  nullable    = false
   default     = []
 }
 
@@ -108,6 +110,7 @@ variable "structured_run_output_enabled" {
 variable "tag_names" {
   description = "A list of tag names for this workspace. Note that tags must only contain lowercase letters, numbers, colons, or hyphens."
   type        = list(string)
+  nullable    = false
   default     = []
 }
 
@@ -129,7 +132,7 @@ variable "trigger_prefixes" {
   default     = null
 }
 
-variable "vcs_repo" {
+variable "vcs_repository" {
   description = "Settings for the workspace's VCS repository, enabling the UI/VCS-driven run workflow. Omit this argument to utilize the CLI-driven and API-driven workflows, where runs are not driven by webhooks on your VCS provider."
 
   type = object({

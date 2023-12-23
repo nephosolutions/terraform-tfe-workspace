@@ -18,6 +18,5 @@ module "workspace" {
 
   description       = "Test workspace"
   name              = "test-workspace"
-  organization      = "my-organization"
   terraform_version = "1.3.5"
 }

@@ -13,11 +13,9 @@
 # limitations under the License.
 
 resource "tfe_workspace" "workspace" {
-  agent_pool_id                 = var.agent_pool_id
   allow_destroy_plan            = var.allow_destroy_plan
   auto_apply                    = var.auto_apply
   description                   = var.description
-  execution_mode                = var.execution_mode
   file_triggers_enabled         = var.file_triggers_enabled
   global_remote_state           = var.global_remote_state
   name                          = var.name
@@ -32,26 +30,23 @@ resource "tfe_workspace" "workspace" {
   terraform_version             = var.terraform_version
   trigger_patterns              = var.trigger_patterns
   trigger_prefixes              = var.trigger_prefixes
+  working_directory             = var.working_directory
 
   dynamic "vcs_repo" {
-    for_each = var.vcs_repo == null ? [] : [1]
+    for_each = var.vcs_repository == null ? [] : [0]
 
     content {
-      branch             = var.vcs_repo.branch
-      identifier         = var.vcs_repo.identifier
-      ingress_submodules = var.vcs_repo.ingress_submodules
-      oauth_token_id     = var.vcs_repo.oauth_token_id
-      tags_regex         = var.vcs_repo.tags_regex
+      branch             = var.vcs_repository.branch
+      identifier         = var.vcs_repository.identifier
+      ingress_submodules = var.vcs_repository.ingress_submodules
+      oauth_token_id     = var.vcs_repository.oauth_token_id
+      tags_regex         = var.vcs_repository.tags_regex
     }
   }
-
-  working_directory = var.working_directory
 }
 
-resource "tfe_variable" "tfe_workspace" {
-  category     = "env"
-  description  = "The name of the Terraform Cloud workspace."
-  key          = "TF_VAR_tfe_workspace"
-  value        = tfe_workspace.workspace.name
-  workspace_id = tfe_workspace.workspace.id
+resource "tfe_workspace_settings" "workspace" {
+  workspace_id   = tfe_workspace.workspace.id
+  agent_pool_id  = var.agent_pool_id
+  execution_mode = var.execution_mode
 }

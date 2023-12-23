@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 
 BREAKING CHANGES:
 * The submodule `workload_identity` has been removed
+* Update the TFE provider to >= 0.51.0
 
 ## [4.2.0] - 2023-01-27
 
