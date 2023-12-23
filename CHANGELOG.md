@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+BREAKING CHANGES:
+* The submodule `workload_identity` has been removed
+
 ## [4.2.0] - 2023-01-27
 
 Add support for Terraform Cloud Projects to organize workspaces at scale.
