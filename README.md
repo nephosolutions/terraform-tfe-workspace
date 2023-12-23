@@ -1,17 +1,6 @@
-# Terraform Cloud Workspace
+# Terraform Cloud/Enterprise Workspace
 
-This module provisions a Terraform Cloud / Terraform Enterprise workspace.
-
-## Usage
-
-```hcl
-module "metadata" {
-  source  = "nephosolutions/workspace/tfe"
-  version = "~> 3.1.0"
-
-
-}
-```
+This module provisions a Terraform Cloud/Enterprise workspace.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements

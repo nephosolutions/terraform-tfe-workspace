@@ -1,4 +1,4 @@
-# Terraform Cloud/Enterprise OIDC Credential for GCP Workload Identity Federation
+# Terraform Cloud/Enterprise OIDC Credential Helper
 
 This is a helper module to prepare GCP Credentials from Terraform Cloud/Enterprise workload identity token.
 
@@ -32,7 +32,7 @@ provider "google-beta" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_external"></a> [external](#provider\_external) | 2.2.3 |
+| <a name="provider_external"></a> [external](#provider\_external) | 2.3.2 |
 
 ## Modules
 
