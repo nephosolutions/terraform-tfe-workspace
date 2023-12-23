@@ -50,3 +50,15 @@ resource "tfe_workspace_settings" "workspace" {
   agent_pool_id  = var.agent_pool_id
   execution_mode = var.execution_mode
 }
+
+resource "tfe_variable" "workspace" {
+  for_each = { for k, v in var.variables : format("%s/%s", v.key, v.category) => v }
+
+  category     = each.value.category
+  description  = each.value.description
+  hcl          = each.value.hcl
+  key          = each.value.key
+  sensitive    = each.value.sensitive
+  value        = each.value.value
+  workspace_id = tfe_workspace.workspace.id
+}

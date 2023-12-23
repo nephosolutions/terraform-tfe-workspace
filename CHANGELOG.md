@@ -8,6 +8,9 @@ BREAKING CHANGES:
 * The submodule `workload_identity` has been removed
 * Update the TFE provider to >= 0.51.0
 
+FEATURES:
+* Configure an optional set of workspace variables
+
 ## [4.2.0] - 2023-01-27
 
 Add support for Terraform Cloud Projects to organize workspaces at scale.

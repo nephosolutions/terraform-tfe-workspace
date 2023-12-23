@@ -132,6 +132,30 @@ variable "trigger_prefixes" {
   default     = null
 }
 
+variable "variables" {
+  description = "Set of variables to configure."
+
+  type = set(object({
+    category    = string
+    description = optional(string)
+    hcl         = optional(bool)
+    key         = string
+    sensitive   = optional(bool)
+    value       = string
+  }))
+
+  nullable = false
+  default  = []
+
+  validation {
+    condition = alltrue([
+      for variable in var.variables : contains(["env", "terraform"], variable.category)
+    ])
+
+    error_message = "Invalid variable category. Valid values are terraform or env."
+  }
+}
+
 variable "vcs_repository" {
   description = "Settings for the workspace's VCS repository, enabling the UI/VCS-driven run workflow. Omit this argument to utilize the CLI-driven and API-driven workflows, where runs are not driven by webhooks on your VCS provider."
 

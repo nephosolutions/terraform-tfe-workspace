@@ -15,10 +15,15 @@
 module "workspace" {
   source = "../../../"
 
-
   description       = "Test workspace"
   name              = "test-workspace"
   terraform_version = "1.3.5"
+
+  variables = [{
+    key      = "foo"
+    value    = "bar"
+    category = "terraform"
+  }]
 
   vcs_repository = {
     branch         = "test"
