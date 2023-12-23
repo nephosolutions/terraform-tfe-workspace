@@ -117,7 +117,7 @@ variable "tag_names" {
 variable "terraform_version" {
   description = "The version of Terraform to use for this workspace. This can be either an exact version or a version constraint (like `~> 1.0.0`); if you specify a constraint, the workspace will always use the newest release that meets that constraint."
   type        = string
-  nullable    = false
+  default     = null
 }
 
 variable "trigger_patterns" {

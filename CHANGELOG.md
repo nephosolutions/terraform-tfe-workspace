@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [5.0.1] - 2023-12-23
+
+BUG FIXES:
+* make the argument `terraform_version` optional
+
 ## [5.0.0] - 2023-12-23
 
 BREAKING CHANGES:
@@ -76,7 +81,8 @@ FEATURES:
 
 Initial release
 
-[Unreleased]: https://github.com/nephosolutions/terraform-tfe-workspace/compare/v5.0.0...HEAD
+[Unreleased]: https://github.com/nephosolutions/terraform-tfe-workspace/compare/v5.0.1...HEAD
+[5.0.1]: https://github.com/nephosolutions/terraform-tfe-workspace/releases/tag/v5.0.1
 [5.0.0]: https://github.com/nephosolutions/terraform-tfe-workspace/releases/tag/v5.0.0
 [4.2.0]: https://github.com/nephosolutions/terraform-tfe-workspace/releases/tag/v4.2.0
 [4.1.0]: https://github.com/nephosolutions/terraform-tfe-workspace/releases/tag/v4.1.0
