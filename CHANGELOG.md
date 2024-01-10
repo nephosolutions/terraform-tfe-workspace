@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+FEATURES:
+* `tfe_workspace`: Add `auto_apply_run_trigger` attribute
+
 ## [5.0.1] - 2023-12-23
 
 BUG FIXES:

@@ -30,6 +30,12 @@ variable "auto_apply" {
   default     = false
 }
 
+variable "auto_apply_run_trigger" {
+  description = "Whether to automatically apply changes for runs that were created by run triggers from another workspace."
+  type        = bool
+  default     = false
+}
+
 variable "description" {
   description = "A description for the workspace."
   type        = string
