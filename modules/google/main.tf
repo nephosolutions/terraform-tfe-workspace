@@ -14,17 +14,21 @@
  * limitations under the License.
  */
 
-resource "tfe_workspace" "workspace" {
+module "tfe_workspace" {
+  source = "../../"
+
   name        = var.name
   description = var.description
 
+  agent_pool_id                 = var.agent_pool_id
   allow_destroy_plan            = var.allow_destroy_plan
   auto_apply                    = var.auto_apply
   auto_apply_run_trigger        = var.auto_apply_run_trigger
+  execution_mode                = var.execution_mode
   file_triggers_enabled         = var.file_triggers_enabled
   global_remote_state           = var.global_remote_state
   organization                  = var.organization
-  project_id                    = var.project_id
+  project_id                    = var.tfc_project_id
   queue_all_runs                = var.queue_all_runs
   remote_state_consumer_ids     = var.remote_state_consumer_ids
   speculative_enabled           = var.speculative_enabled
@@ -34,35 +38,42 @@ resource "tfe_workspace" "workspace" {
   terraform_version             = var.terraform_version
   trigger_patterns              = var.trigger_patterns
   trigger_prefixes              = var.trigger_prefixes
+  vcs_repository                = var.vcs_repository
   working_directory             = var.working_directory
 
-  dynamic "vcs_repo" {
-    for_each = var.vcs_repository == null ? [] : [0]
-
-    content {
-      branch             = var.vcs_repository.branch
-      identifier         = var.vcs_repository.identifier
-      ingress_submodules = var.vcs_repository.ingress_submodules
-      oauth_token_id     = var.vcs_repository.oauth_token_id
-      tags_regex         = var.vcs_repository.tags_regex
-    }
-  }
+  variables = setunion(var.variables, [{
+    key         = "TFC_GCP_RUN_SERVICE_ACCOUNT_EMAIL"
+    value       = google_service_account.tfe_workspace.email
+    category    = "env"
+    description = "The service account email Terraform Cloud will use when authenticating to GCP."
+  }])
 }
 
-resource "tfe_workspace_settings" "workspace" {
-  workspace_id   = tfe_workspace.workspace.id
-  agent_pool_id  = var.agent_pool_id
-  execution_mode = var.execution_mode
+resource "google_service_account" "tfe_workspace" {
+  project      = var.gcp_project_id
+  account_id   = lower(module.tfe_workspace.id)
+  display_name = title(module.tfe_workspace.name)
+  description  = "Used by Terraform Cloud to deploy resources."
 }
 
-resource "tfe_variable" "workspace" {
-  for_each = { for k, v in var.variables : format("%s/%s", v.key, v.category) => v }
+resource "google_service_account_iam_member" "terraform_workload_identity_user" {
+  member = format(
+    "principalSet://iam.googleapis.com/%s/attribute.terraform_workspace_id/%s",
+    var.workload_identity_pool,
+    module.tfe_workspace.id
+  )
 
-  category     = each.value.category
-  description  = each.value.description
-  hcl          = each.value.hcl
-  key          = each.value.key
-  sensitive    = each.value.sensitive
-  value        = each.value.value
-  workspace_id = tfe_workspace.workspace.id
+  role               = "roles/iam.workloadIdentityUser"
+  service_account_id = google_service_account.tfe_workspace.id
+}
+
+// Allows the service account to create tokens for it self; required to authenticate to 3rd party APIs like Kubernetes.
+resource "google_service_account_iam_member" "terraform_service_account_token_creator" {
+  member = format(
+    "serviceAccount:%s",
+    google_service_account.tfe_workspace.email
+  )
+
+  role               = "roles/iam.serviceAccountTokenCreator"
+  service_account_id = google_service_account.tfe_workspace.id
 }

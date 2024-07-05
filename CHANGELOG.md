@@ -4,8 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [5.1.0] - 2024-07-05
+
 FEATURES:
 * `tfe_workspace`: Add `auto_apply_run_trigger` attribute
+* **New Module**: for Dynamic Credentials with the GCP Provider
 
 ## [5.0.1] - 2023-12-23
 
@@ -84,7 +87,8 @@ FEATURES:
 
 Initial release
 
-[Unreleased]: https://github.com/nephosolutions/terraform-tfe-workspace/compare/v5.0.1...HEAD
+[Unreleased]: https://github.com/nephosolutions/terraform-tfe-workspace/compare/v5.1.0...HEAD
+[5.1.0]: https://github.com/nephosolutions/terraform-tfe-workspace/releases/tag/v5.1.0
 [5.0.1]: https://github.com/nephosolutions/terraform-tfe-workspace/releases/tag/v5.0.1
 [5.0.0]: https://github.com/nephosolutions/terraform-tfe-workspace/releases/tag/v5.0.0
 [4.2.0]: https://github.com/nephosolutions/terraform-tfe-workspace/releases/tag/v4.2.0
