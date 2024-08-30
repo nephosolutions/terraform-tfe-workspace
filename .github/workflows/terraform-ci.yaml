@@ -1,0 +1,68 @@
+---
+name: Terraform CI
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  formatting:
+    name: Check Formatting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Check Terraform code is formatted
+        uses: docker://hashicorp/terraform:latest
+        with:
+          entrypoint: terraform
+          args: fmt -check -diff -recursive
+
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Run Terraform init
+        uses: docker://hashicorp/terraform:latest
+        with:
+          entrypoint: terraform
+          args: init
+
+      - name: Run Terraform validate
+        uses: docker://hashicorp/terraform:latest
+        with:
+          entrypoint: terraform
+          args: validate
+
+  tflint:
+    name: TFLint
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout source code
+
+      - uses: actions/cache@v4
+        name: Cache plugin dir
+        with:
+          path: ~/.tflint.d/plugins
+          key: ${{ matrix.os }}-tflint-${{ hashFiles('.tflint.hcl') }}
+
+      - uses: terraform-linters/setup-tflint@v4
+        name: Setup TFLint
+
+      - name: Init TFLint
+        run: tflint --init
+        env:
+          # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Run TFLint
+        run: tflint -f compact
