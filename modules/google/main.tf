@@ -41,12 +41,20 @@ module "tfe_workspace" {
   vcs_repository                = var.vcs_repository
   working_directory             = var.working_directory
 
-  variables = setunion(var.variables, [{
-    key         = "TFC_GCP_RUN_SERVICE_ACCOUNT_EMAIL"
-    value       = google_service_account.tfe_workspace.email
-    category    = "env"
-    description = "The service account email Terraform Cloud will use when authenticating to GCP."
-  }])
+  variables = setunion(var.variables, [
+    {
+      key         = "TFC_GCP_PROVIDER_AUTH"
+      value       = var.tfc_gcp_provider_auth
+      category    = "env"
+      description = "Whether Terraform Cloud will attempt to use dynamic credentials to authenticate to GCP."
+    },
+    {
+      key         = "TFC_GCP_RUN_SERVICE_ACCOUNT_EMAIL"
+      value       = google_service_account.tfe_workspace.email
+      category    = "env"
+      description = "The service account email Terraform Cloud will use when authenticating to GCP."
+    }
+  ])
 }
 
 resource "google_service_account" "tfe_workspace" {
