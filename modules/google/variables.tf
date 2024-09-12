@@ -128,6 +128,13 @@ variable "terraform_version" {
   default     = null
 }
 
+variable "tfc_gcp_provider_auth" {
+  description = "Whether Terraform Cloud will attempt to use dynamic credentials to authenticate to GCP."
+  type        = bool
+  nullable    = false
+  default     = true
+}
+
 variable "tfc_project_id" {
   description = "The ID of the Terraform Cloud project where the workspace should be created."
   type        = string
