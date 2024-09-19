@@ -55,9 +55,9 @@ module "tfe_workspace" {
       description = "The service account email Terraform Cloud will use when authenticating to GCP."
     },
     {
-      key         = "TFC_GCP_RUN_SERVICE_ACCOUNT_EMAIL"
+      key         = "TF_VAR_TFC_GCP_RUN_SERVICE_ACCOUNT_EMAIL"
       value       = google_service_account.tfe_workspace.email
-      category    = "terraform"
+      category    = "env"
       description = "The service account email Terraform Cloud will use when authenticating to GCP."
     }
   ])
