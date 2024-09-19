@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [5.3.0] - 2024-09-19
+
+FEATURES:
+* Add `TFC_GCP_RUN_SERVICE_ACCOUNT_EMAIL` as workspace variable of type `terraform`
+
 ## [5.2.0] - 2024-09-12
 
 FEATURES:
@@ -92,7 +97,8 @@ FEATURES:
 
 Initial release
 
-[Unreleased]: https://github.com/nephosolutions/terraform-tfe-workspace/compare/v5.2.0...HEAD
+[Unreleased]: https://github.com/nephosolutions/terraform-tfe-workspace/compare/v5.3.0...HEAD
+[5.3.0]: https://github.com/nephosolutions/terraform-tfe-workspace/releases/tag/v5.3.0
 [5.2.0]: https://github.com/nephosolutions/terraform-tfe-workspace/releases/tag/v5.2.0
 [5.1.0]: https://github.com/nephosolutions/terraform-tfe-workspace/releases/tag/v5.1.0
 [5.0.1]: https://github.com/nephosolutions/terraform-tfe-workspace/releases/tag/v5.0.1
