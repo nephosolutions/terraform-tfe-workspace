@@ -1,5 +1,5 @@
 /**
- * Copyright 2019-2024 NephoSolutions srl, Sebastian Trebitz
+ * Copyright 2019-2025 NephoSolutions srl, Sebastian Trebitz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -93,6 +93,13 @@ variable "queue_all_runs" {
 variable "remote_state_consumer_ids" {
   description = "The set of workspace IDs set as explicit remote state consumers for the given workspace."
   type        = list(string)
+  nullable    = false
+  default     = []
+}
+
+variable "run_trigger_ids" {
+  description = "The set of workspace IDs to queue runs automatically on successful apply of runs in any of the source workspaces."
+  type        = set(string)
   nullable    = false
   default     = []
 }

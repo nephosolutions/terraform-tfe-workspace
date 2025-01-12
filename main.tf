@@ -1,5 +1,5 @@
 /**
- * Copyright 2019-2024 NephoSolutions srl, Sebastian Trebitz
+ * Copyright 2019-2025 NephoSolutions srl, Sebastian Trebitz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,4 +65,11 @@ resource "tfe_variable" "workspace" {
   sensitive    = each.value.sensitive
   value        = each.value.value
   workspace_id = tfe_workspace.workspace.id
+}
+
+resource "tfe_run_trigger" "upstream_workspace" {
+  for_each = var.run_trigger_ids
+
+  sourceable_id = each.key
+  workspace_id  = tfe_workspace.workspace.id
 }

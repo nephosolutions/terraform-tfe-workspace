@@ -1,5 +1,5 @@
 /**
- * Copyright 2019-2024 NephoSolutions srl, Sebastian Trebitz
+ * Copyright 2019-2025 NephoSolutions srl, Sebastian Trebitz
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ module "tfe_workspace" {
   project_id                    = var.tfc_project_id
   queue_all_runs                = var.queue_all_runs
   remote_state_consumer_ids     = var.remote_state_consumer_ids
+  run_trigger_ids               = var.run_trigger_ids
   speculative_enabled           = var.speculative_enabled
   ssh_key_id                    = var.ssh_key_id
   structured_run_output_enabled = var.structured_run_output_enabled

@@ -2,8 +2,8 @@
 
 This module provisions a Terraform Cloud/Enterprise workspace.
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-Copyright 2019-2024 NephoSolutions srl, Sebastian Trebitz
+<!-- BEGIN_TF_DOCS -->
+Copyright 2019-2025 NephoSolutions srl, Sebastian Trebitz
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -38,6 +38,7 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [tfe_run_trigger.upstream_workspace](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/run_trigger) | resource |
 | [tfe_variable.workspace](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/variable) | resource |
 | [tfe_workspace.workspace](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/workspace) | resource |
 | [tfe_workspace_settings.workspace](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/resources/workspace_settings) | resource |
@@ -59,6 +60,7 @@ No modules.
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | ID of the project where the workspace should be created. | `string` | `null` | no |
 | <a name="input_queue_all_runs"></a> [queue\_all\_runs](#input\_queue\_all\_runs) | Whether the workspace should start automatically performing runs immediately after its creation. | `bool` | `true` | no |
 | <a name="input_remote_state_consumer_ids"></a> [remote\_state\_consumer\_ids](#input\_remote\_state\_consumer\_ids) | The set of workspace IDs set as explicit remote state consumers for the given workspace. | `list(string)` | `[]` | no |
+| <a name="input_run_trigger_ids"></a> [run\_trigger\_ids](#input\_run\_trigger\_ids) | The set of workspace IDs to queue runs automatically on successful apply of runs in any of the source workspaces. | `set(string)` | `[]` | no |
 | <a name="input_speculative_enabled"></a> [speculative\_enabled](#input\_speculative\_enabled) | Whether this workspace allows speculative plans.  Setting this to `false` prevents Terraform Cloud or the Terraform Enterprise instance from running plans on pull requests, which can improve security if the VCS repository is public or includes untrusted contributors. | `bool` | `true` | no |
 | <a name="input_ssh_key_id"></a> [ssh\_key\_id](#input\_ssh\_key\_id) | The ID of an SSH key to assign to the workspace. | `string` | `null` | no |
 | <a name="input_structured_run_output_enabled"></a> [structured\_run\_output\_enabled](#input\_structured\_run\_output\_enabled) | Whether this workspace should show output from Terraform runs using the enhanced UI when available. Setting this to `false` ensures that all runs in this workspace will display their output as text logs. | `bool` | `true` | no |
@@ -66,8 +68,8 @@ No modules.
 | <a name="input_terraform_version"></a> [terraform\_version](#input\_terraform\_version) | The version of Terraform to use for this workspace. This can be either an exact version or a version constraint (like `~> 1.0.0`); if you specify a constraint, the workspace will always use the newest release that meets that constraint. | `string` | `null` | no |
 | <a name="input_trigger_patterns"></a> [trigger\_patterns](#input\_trigger\_patterns) | List of glob patterns that describe the files Terraform Cloud monitors for changes. Trigger patterns are always appended to the root directory of the repository. | `list(string)` | `null` | no |
 | <a name="input_trigger_prefixes"></a> [trigger\_prefixes](#input\_trigger\_prefixes) | List of repository-root-relative paths which describe all locations to be tracked for changes. | `list(string)` | `null` | no |
-| <a name="input_variables"></a> [variables](#input\_variables) | Set of variables to configure. | <pre>set(object({<br>    category    = string<br>    description = optional(string)<br>    hcl         = optional(bool)<br>    key         = string<br>    sensitive   = optional(bool)<br>    value       = string<br>  }))</pre> | `[]` | no |
-| <a name="input_vcs_repository"></a> [vcs\_repository](#input\_vcs\_repository) | Settings for the workspace's VCS repository, enabling the UI/VCS-driven run workflow. Omit this argument to utilize the CLI-driven and API-driven workflows, where runs are not driven by webhooks on your VCS provider. | <pre>object({<br>    branch             = optional(string)<br>    identifier         = string<br>    ingress_submodules = optional(bool)<br>    oauth_token_id     = string<br>    tags_regex         = optional(string)<br>  })</pre> | `null` | no |
+| <a name="input_variables"></a> [variables](#input\_variables) | Set of variables to configure. | <pre>set(object({<br/>    category    = string<br/>    description = optional(string)<br/>    hcl         = optional(bool)<br/>    key         = string<br/>    sensitive   = optional(bool)<br/>    value       = string<br/>  }))</pre> | `[]` | no |
+| <a name="input_vcs_repository"></a> [vcs\_repository](#input\_vcs\_repository) | Settings for the workspace's VCS repository, enabling the UI/VCS-driven run workflow. Omit this argument to utilize the CLI-driven and API-driven workflows, where runs are not driven by webhooks on your VCS provider. | <pre>object({<br/>    branch             = optional(string)<br/>    identifier         = string<br/>    ingress_submodules = optional(bool)<br/>    oauth_token_id     = string<br/>    tags_regex         = optional(string)<br/>  })</pre> | `null` | no |
 | <a name="input_working_directory"></a> [working\_directory](#input\_working\_directory) | A relative path that Terraform will execute within. Defaults to the root of your repository. | `string` | `null` | no |
 
 ## Outputs
@@ -76,4 +78,4 @@ No modules.
 |------|-------------|
 | <a name="output_id"></a> [id](#output\_id) | The workspace identifier. |
 | <a name="output_name"></a> [name](#output\_name) | The workspace name. |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

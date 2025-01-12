@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [5.4.0] - 2025-01-12
+
+FEATURES:
+* Add `tfe_run_trigger` to allow runs to queue automatically in the workspace on successful apply of runs in any of the source workspaces
+
 ## [5.3.1] - 2024-09-19
 
 BUG FIXES:
@@ -103,7 +108,8 @@ FEATURES:
 
 Initial release
 
-[Unreleased]: https://github.com/nephosolutions/terraform-tfe-workspace/compare/v5.3.1...HEAD
+[Unreleased]: https://github.com/nephosolutions/terraform-tfe-workspace/compare/v5.4.0...HEAD
+[5.4.0]: https://github.com/nephosolutions/terraform-tfe-workspace/releases/tag/v5.4.0
 [5.3.1]: https://github.com/nephosolutions/terraform-tfe-workspace/releases/tag/v5.3.1
 [5.3.0]: https://github.com/nephosolutions/terraform-tfe-workspace/releases/tag/v5.3.0
 [5.2.0]: https://github.com/nephosolutions/terraform-tfe-workspace/releases/tag/v5.2.0
