@@ -24,6 +24,11 @@ output "workspace_name" {
   value       = module.tfe_workspace.name
 }
 
+output "run_triggers_ids" {
+  description = "A map run_trigger IDs which link the workspace to the source workspace."
+  value       = module.tfe_workspace.run_triggers_ids
+}
+
 output "service_account_email" {
   description = "The Terraform Cloud workspace service account."
   value       = google_service_account.tfe_workspace.email

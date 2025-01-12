@@ -82,6 +82,7 @@ limitations under the License.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_run_triggers_ids"></a> [run\_triggers\_ids](#output\_run\_triggers\_ids) | A map run\_trigger IDs which link the workspace to the source workspace. |
 | <a name="output_service_account_email"></a> [service\_account\_email](#output\_service\_account\_email) | The Terraform Cloud workspace service account. |
 | <a name="output_workspace_id"></a> [workspace\_id](#output\_workspace\_id) | The workspace identifier. |
 | <a name="output_workspace_name"></a> [workspace\_name](#output\_workspace\_name) | The workspace name. |

@@ -78,4 +78,5 @@ No modules.
 |------|-------------|
 | <a name="output_id"></a> [id](#output\_id) | The workspace identifier. |
 | <a name="output_name"></a> [name](#output\_name) | The workspace name. |
+| <a name="output_run_triggers_ids"></a> [run\_triggers\_ids](#output\_run\_triggers\_ids) | A map run\_trigger IDs which link the workspace to the source workspace. |
 <!-- END_TF_DOCS -->

@@ -23,3 +23,8 @@ output "name" {
   description = "The workspace name."
   value       = tfe_workspace.workspace.name
 }
+
+output "run_triggers_ids" {
+  description = "A map run_trigger IDs which link the workspace to the source workspace."
+  value       = { for rt_key, rt in tfe_run_trigger.upstream_workspace : rt.id => rt.sourceable_id }
+}
