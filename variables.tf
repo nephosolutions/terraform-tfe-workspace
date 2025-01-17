@@ -91,7 +91,7 @@ variable "queue_all_runs" {
 }
 
 variable "remote_state_consumer_ids" {
-  description = "The set of workspace IDs set as explicit remote state consumers for the given workspace."
+  description = "The set of workspace IDs set as explicit remote state consumers for the given workspace. To set this attribute, `global_remote_state` must be false."
   type        = list(string)
   nullable    = false
   default     = []

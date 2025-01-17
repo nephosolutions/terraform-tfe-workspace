@@ -22,13 +22,13 @@ limitations under the License.
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.1.0 |
-| <a name="requirement_tfe"></a> [tfe](#requirement\_tfe) | >= 0.51.0 |
+| <a name="requirement_tfe"></a> [tfe](#requirement\_tfe) | >= 0.61.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_tfe"></a> [tfe](#provider\_tfe) | 0.51.1 |
+| <a name="provider_tfe"></a> [tfe](#provider\_tfe) | 0.62.0 |
 
 ## Modules
 
@@ -59,7 +59,7 @@ No modules.
 | <a name="input_organization"></a> [organization](#input\_organization) | Name of the Terraform Cloud organization. | `string` | `null` | no |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | ID of the project where the workspace should be created. | `string` | `null` | no |
 | <a name="input_queue_all_runs"></a> [queue\_all\_runs](#input\_queue\_all\_runs) | Whether the workspace should start automatically performing runs immediately after its creation. | `bool` | `true` | no |
-| <a name="input_remote_state_consumer_ids"></a> [remote\_state\_consumer\_ids](#input\_remote\_state\_consumer\_ids) | The set of workspace IDs set as explicit remote state consumers for the given workspace. | `list(string)` | `[]` | no |
+| <a name="input_remote_state_consumer_ids"></a> [remote\_state\_consumer\_ids](#input\_remote\_state\_consumer\_ids) | The set of workspace IDs set as explicit remote state consumers for the given workspace. To set this attribute, `global_remote_state` must be false. | `list(string)` | `[]` | no |
 | <a name="input_run_trigger_ids"></a> [run\_trigger\_ids](#input\_run\_trigger\_ids) | The set of workspace IDs to queue runs automatically on successful apply of runs in any of the source workspaces. | `set(string)` | `[]` | no |
 | <a name="input_speculative_enabled"></a> [speculative\_enabled](#input\_speculative\_enabled) | Whether this workspace allows speculative plans.  Setting this to `false` prevents Terraform Cloud or the Terraform Enterprise instance from running plans on pull requests, which can improve security if the VCS repository is public or includes untrusted contributors. | `bool` | `true` | no |
 | <a name="input_ssh_key_id"></a> [ssh\_key\_id](#input\_ssh\_key\_id) | The ID of an SSH key to assign to the workspace. | `string` | `null` | no |

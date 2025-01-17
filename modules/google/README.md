@@ -24,13 +24,13 @@ limitations under the License.
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
 | <a name="requirement_google"></a> [google](#requirement\_google) | >= 3.50 |
-| <a name="requirement_tfe"></a> [tfe](#requirement\_tfe) | >= 0.51.0 |
+| <a name="requirement_tfe"></a> [tfe](#requirement\_tfe) | >= 0.61.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 5.36.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 6.16.0 |
 
 ## Modules
 

@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [6.0.0] - 2025-01-17
+
+BREAKING CHANGES:
+* move remote state consumers to `tfe_workspace_settings`
+* Update the TFE provider to >= 0.61.0
+
 FEATURES:
 * Output map of `tfe_run_trigger` IDs which link to the source workspace
 

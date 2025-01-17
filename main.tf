@@ -22,11 +22,9 @@ resource "tfe_workspace" "workspace" {
   auto_apply                    = var.auto_apply
   auto_apply_run_trigger        = var.auto_apply_run_trigger
   file_triggers_enabled         = var.file_triggers_enabled
-  global_remote_state           = var.global_remote_state
   organization                  = var.organization
   project_id                    = var.project_id
   queue_all_runs                = var.queue_all_runs
-  remote_state_consumer_ids     = var.remote_state_consumer_ids
   speculative_enabled           = var.speculative_enabled
   ssh_key_id                    = var.ssh_key_id
   structured_run_output_enabled = var.structured_run_output_enabled
@@ -50,9 +48,12 @@ resource "tfe_workspace" "workspace" {
 }
 
 resource "tfe_workspace_settings" "workspace" {
-  workspace_id   = tfe_workspace.workspace.id
-  agent_pool_id  = var.agent_pool_id
-  execution_mode = var.execution_mode
+  workspace_id = tfe_workspace.workspace.id
+
+  agent_pool_id             = var.agent_pool_id
+  execution_mode            = var.execution_mode
+  global_remote_state       = var.global_remote_state
+  remote_state_consumer_ids = var.remote_state_consumer_ids
 }
 
 resource "tfe_variable" "workspace" {
