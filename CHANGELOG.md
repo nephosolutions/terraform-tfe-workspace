@@ -8,36 +8,36 @@ All notable changes to this project will be documented in this file.
 
 BREAKING CHANGES:
 * move remote state consumers to `tfe_workspace_settings`
-* Update the TFE provider to >= 0.61.0
+* update the TFE provider to >= 0.61.0
 
 FEATURES:
-* Output map of `tfe_run_trigger` IDs which link to the source workspace
+* output map of `tfe_run_trigger` IDs which link to the source workspace
 
 ## [5.4.0] - 2025-01-12
 
 FEATURES:
-* Add `tfe_run_trigger` to allow runs to queue automatically in the workspace on successful apply of runs in any of the source workspaces
+* add `tfe_run_trigger` to allow runs to queue automatically in the workspace on successful apply of runs in any of the source workspaces
 
 ## [5.3.1] - 2024-09-19
 
 BUG FIXES:
-* Migrate `TFC_GCP_RUN_SERVICE_ACCOUNT_EMAIL` Terraform variable to
+* migrate `TFC_GCP_RUN_SERVICE_ACCOUNT_EMAIL` Terraform variable to
   optional `TF_VAR_TFC_GCP_RUN_SERVICE_ACCOUNT_EMAIL` environment variable
 
 ## [5.3.0] - 2024-09-19
 
 FEATURES:
-* Add `TFC_GCP_RUN_SERVICE_ACCOUNT_EMAIL` as workspace variable of type `terraform`
+* add `TFC_GCP_RUN_SERVICE_ACCOUNT_EMAIL` as workspace variable of type `terraform`
 
 ## [5.2.0] - 2024-09-12
 
 FEATURES:
-* Add `tfc_gcp_provider_auth` whether Terraform Cloud will attempt to use dynamic credentials to authenticate to GCP
+* add `tfc_gcp_provider_auth` whether Terraform Cloud will attempt to use dynamic credentials to authenticate to GCP
 
 ## [5.1.0] - 2024-07-05
 
 FEATURES:
-* `tfe_workspace`: Add `auto_apply_run_trigger` attribute
+* `tfe_workspace`: add `auto_apply_run_trigger` attribute
 * **New Module**: for Dynamic Credentials with the GCP Provider
 
 ## [5.0.1] - 2023-12-23
@@ -48,11 +48,11 @@ BUG FIXES:
 ## [5.0.0] - 2023-12-23
 
 BREAKING CHANGES:
-* The submodule `workload_identity` has been removed
-* Update the TFE provider to >= 0.51.0
+* the submodule `workload_identity` has been removed
+* update the TFE provider to >= 0.51.0
 
 FEATURES:
-* Configure an optional set of workspace variables
+* configure an optional set of workspace variables
 * **New Resource**: manage execution mode and agent pool settings in `tfe_workspace_settings`
 
 ## [4.2.0] - 2023-01-27
@@ -66,7 +66,7 @@ BREAKING CHANGES:
 * Terraform `>= 1.3` is required.
 
 FEATURES:
-*add support for optional VCS configuration attributes `branch`, `ingress_submodules` and `tags_regex`.
+* add support for optional VCS configuration attributes `branch`, `ingress_submodules` and `tags_regex`.
 
 ## [4.0.0] - 2022-12-27
 
@@ -117,7 +117,8 @@ FEATURES:
 
 Initial release
 
-[Unreleased]: https://github.com/nephosolutions/terraform-tfe-workspace/compare/v5.4.0...HEAD
+[Unreleased]: https://github.com/nephosolutions/terraform-tfe-workspace/compare/v6.0.0...HEAD
+[6.0.0]: https://github.com/nephosolutions/terraform-tfe-workspace/releases/tag/v6.0.0
 [5.4.0]: https://github.com/nephosolutions/terraform-tfe-workspace/releases/tag/v5.4.0
 [5.3.1]: https://github.com/nephosolutions/terraform-tfe-workspace/releases/tag/v5.3.1
 [5.3.0]: https://github.com/nephosolutions/terraform-tfe-workspace/releases/tag/v5.3.0
